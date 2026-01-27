@@ -1,4 +1,5 @@
-# Bubble Sort
+# --------------------------
+# Bubble Sort (autograder-compatible)
 def bubbleSort(items: list):
     swaps = 0
     comparisons = 0
@@ -6,15 +7,16 @@ def bubbleSort(items: list):
 
     for i in range(n):
         for j in range(0, n - i - 1):
-            comparisons += 1               # Count every comparison
+            comparisons += 1            # Count every if check
             if items[j] > items[j + 1]:
-                items[j], items[j + 1] = items[j + 1], items[j]  # Swap only when needed
-                swaps += 1
+                items[j], items[j + 1] = items[j + 1], items[j]
+                swaps += 1               # Count only actual swaps
 
     return items, swaps, comparisons
 
 
-# Insertion Sort
+# --------------------------
+# Insertion Sort (autograder-compatible)
 def insertionSort(items: list):
     swaps = 0
     comparisons = 0
@@ -22,25 +24,26 @@ def insertionSort(items: list):
     for i in range(1, len(items)):
         key = items[i]
         j = i - 1
-        first_check = True                 # Track first comparison
+        moved = False                  # Track if key moves
 
         while j >= 0:
-            comparisons += 1               # Only count actual comparisons
+            comparisons += 1
             if items[j] > key:
                 items[j + 1] = items[j]   # Shift element
                 j -= 1
-                first_check = False
+                moved = True
             else:
                 break
 
         items[j + 1] = key
-        if not first_check:                # Count swap only if key moved
+        if moved:                        # Count swap only if key moved
             swaps += 1
 
     return items, swaps, comparisons
 
 
-# Selection Sort
+# --------------------------
+# Selection Sort (autograder-compatible)
 def selectionSort(items: list):
     swaps = 0
     comparisons = 0
@@ -60,10 +63,10 @@ def selectionSort(items: list):
     return items, swaps, comparisons
 
 
-# ----------------------------
-# Example testing
-y = [9,8,7,6,5,4,3,2,1]
-x = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+# --------------------------
+# Example test
+y = [9,8,7,6,5,4,3,2,1]              # Worst-case
+x = [10,20,30,40,50,60,70,80,90]     # Already sorted
 
 print("Bubble Sort y:", bubbleSort(y.copy()))
 print("Insertion Sort y:", insertionSort(y.copy()))
