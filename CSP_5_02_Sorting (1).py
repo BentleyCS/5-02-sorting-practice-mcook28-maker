@@ -1,6 +1,4 @@
-import random
-
-
+# Bubble Sort
 def bubbleSort(items: list):
     swaps = 0
     comparisons = 0
@@ -8,14 +6,15 @@ def bubbleSort(items: list):
 
     for i in range(n):
         for j in range(0, n - i - 1):
-            comparisons += 1
+            comparisons += 1               # Count every comparison
             if items[j] > items[j + 1]:
-                items[j], items[j + 1] = items[j + 1], items[j]
+                items[j], items[j + 1] = items[j + 1], items[j]  # Swap only when needed
                 swaps += 1
 
     return items, swaps, comparisons
 
 
+# Insertion Sort
 def insertionSort(items: list):
     swaps = 0
     comparisons = 0
@@ -23,21 +22,25 @@ def insertionSort(items: list):
     for i in range(1, len(items)):
         key = items[i]
         j = i - 1
+        first_check = True                 # Track first comparison
 
         while j >= 0:
-            comparisons += 1
+            comparisons += 1               # Only count actual comparisons
             if items[j] > key:
-                items[j + 1] = items[j]
-                swaps += 1
+                items[j + 1] = items[j]   # Shift element
                 j -= 1
+                first_check = False
             else:
                 break
 
         items[j + 1] = key
+        if not first_check:                # Count swap only if key moved
+            swaps += 1
 
     return items, swaps, comparisons
 
 
+# Selection Sort
 def selectionSort(items: list):
     swaps = 0
     comparisons = 0
@@ -57,14 +60,15 @@ def selectionSort(items: list):
     return items, swaps, comparisons
 
 
+# ----------------------------
+# Example testing
 y = [9,8,7,6,5,4,3,2,1]
-print(bubbleSort(y.copy()))
-print(insertionSort(y.copy()))
-print(selectionSort(y.copy()))
-print()
+x = [10, 20, 30, 40, 50, 60, 70, 80, 90]
 
-x = [x for x in range(50)]
-random.shuffle(x)
-print(bubbleSort(x.copy()))
-print(insertionSort(x.copy()))
-print(selectionSort(x.copy()))
+print("Bubble Sort y:", bubbleSort(y.copy()))
+print("Insertion Sort y:", insertionSort(y.copy()))
+print("Selection Sort y:", selectionSort(y.copy()))
+print()
+print("Bubble Sort x:", bubbleSort(x.copy()))
+print("Insertion Sort x:", insertionSort(x.copy()))
+print("Selection Sort x:", selectionSort(x.copy()))
