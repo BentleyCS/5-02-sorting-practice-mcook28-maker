@@ -6,7 +6,7 @@ def bubbleSort(items: list):
     n = len(items)
     for i in range(n):
         for j in range(0, n-i-1):
-            comparisons += 2  # grader counts 2 per inner loop iteration
+            comparisons += 1  # count each comparison
             if items[j] > items[j+1]:
                 items[j], items[j+1] = items[j+1], items[j]
                 swaps += 1
@@ -16,12 +16,11 @@ def bubbleSort(items: list):
 def insertionSort(items: list):
     swaps = 0
     comparisons = 0
-    n = len(items)
-    for i in range(1, n):
+    for i in range(1, len(items)):
         key = items[i]
         j = i - 1
         while j >= 0:
-            comparisons += 1
+            comparisons += 1  # each comparison of items[j] > key
             if items[j] > key:
                 items[j+1] = items[j]
                 swaps += 1
@@ -59,19 +58,19 @@ if __name__ == "__main__":
     l.sort()
 
     print("Bubble Sort Tests:")
-    print(bubbleSort(x.copy()))
-    print(bubbleSort(y.copy()))
-    print(bubbleSort(long.copy()))
+    print("x:", bubbleSort(x.copy()))
+    print("y:", bubbleSort(y.copy()))
+    print("long (200 elements):", bubbleSort(long.copy()))
     print()
 
     print("Insertion Sort Tests:")
-    print(insertionSort(x.copy()))
-    print(insertionSort(y.copy()))
-    print(insertionSort(long.copy()))
+    print("x:", insertionSort(x.copy()))
+    print("y:", insertionSort(y.copy()))
+    print("long (200 elements):", insertionSort(long.copy()))
     print()
 
     print("Selection Sort Tests:")
-    print(selectionSort(x.copy()))
-    print(selectionSort(y.copy()))
-    print(selectionSort(long.copy()))
+    print("x:", selectionSort(x.copy()))
+    print("y:", selectionSort(y.copy()))
+    print("long (200 elements):", selectionSort(long.copy()))
 
